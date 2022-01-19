@@ -15,7 +15,7 @@ class FileManagerProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/FileManagerConfig.php' => config_path('filemanager.php'),
-        ]);
+        ] , 'laravel-file-manager');
 
         $this->loadRoutesFrom(__DIR__.'/FileManagerRoutes.php');
     }
