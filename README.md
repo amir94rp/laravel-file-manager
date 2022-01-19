@@ -43,30 +43,61 @@ npm i @amir94rp/vue3-file-manager --save-dev
 ##### [FileInput](https://www.npmjs.com/package/@amir94rp/vue3-file-input)
 
 ```vue
-<FileInput 
-    :images="[]" 
-    v-on:update:images="images = $event" 
-    :sm-cols="1" 
-    :md-cols="4" 
-    :multiple="false"
-/>
+<template>
+    <FileInput 
+        :images="images" 
+        v-on:update:images="images = $event" 
+        :sm-cols="1" 
+        :md-cols="4" 
+        :multiple="false"
+    />
+</template>
+<script>
+    import FileInput from "@amir94rp/vue3-file-input";
+    export default {
+        components: {
+            FileInput
+        },
+        data(){
+            return{
+                images:[]
+            }
+        }
+    }
+</script>
 ```
 
 |                  |Type                           |Description                            |
 |------------------|-------------------------------|---------------------------------------|
-|images            |Array                          |array of image urls                    |
+|images            |Array                          |array of images url                    |
 |multiple          |Boolean                        |allow multiple image selection         |
-|sm-cols & md-cols |Numeric (1-12)                 |it defines the maximum columns allowed |
+|sm-cols & md-cols |Integer (1-12)                 |it defines the maximum columns allowed |
 
 ##### [FileManager](https://www.npmjs.com/package/@amir94rp/vue3-file-manager)
 
 ```vue
-<FileManager 
-    :open-file-manager="open" 
-    :multiple="false"
-    v-on:update:openFileManager="open = $event" 
-    v-on:update:selectedImages="addImage($event)"
-/>
+<template>
+    <FileManager 
+        :open-file-manager="open" 
+        :multiple="false"
+        v-on:update:openFileManager="open = $event" 
+        v-on:update:selectedImages="images = $event"
+    />
+</template>
+<script>
+    import FileManager from "@amir94rp/vue3-file-manager";
+    export default {
+        data(){
+            return{
+                open : false,
+                images : []
+            }
+        },
+        components:{
+            FileManager
+        }
+    }
+</script>
 ```
 
 |                      |Type                           |Description                            |
@@ -74,6 +105,7 @@ npm i @amir94rp/vue3-file-manager --save-dev
 |open-file-manager     |Boolean                        |show file manager modal                |
 |multiple              |Boolean                        |allow multiple image selection         |
 |update:selectedImages |Array                          |it will return array of selected images|
+|update:openFileManager|Boolean                        |it will return modal status            |
 
 ## License
 
