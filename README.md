@@ -1,6 +1,6 @@
 ## About Laravel File Manager
 
-this package developed for vue 3 and has the basic requirements of a file manager ( image uploader ). 
+This package developed for Vue.js 3 and has the basic requirements of a file manager ( image uploader ).
 
 ### Install
 
@@ -31,7 +31,7 @@ add @routes to head of your root template.
 </html>
 ```
 
-####vue 3 components
+#### vue 3 components
 
 you can use both file-input and file-manager components. install them first.
 
@@ -40,7 +40,7 @@ npm i @amir94rp/vue3-file-input --save-dev
 npm i @amir94rp/vue3-file-manager --save-dev
 ```
 
-#####FileInput
+##### [FileInput](https://www.npmjs.com/package/@amir94rp/vue3-file-input)
 
 ```vue
 <FileInput 
@@ -58,7 +58,7 @@ npm i @amir94rp/vue3-file-manager --save-dev
 |multiple          |Boolean                        |allow multiple image selection         |
 |sm-cols & md-cols |Numeric (1-12)                 |it defines the maximum columns allowed |
 
-#####FileManager
+##### [FileManager](https://www.npmjs.com/package/@amir94rp/vue3-file-manager)
 
 ```vue
 <FileManager 
