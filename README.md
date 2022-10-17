@@ -12,7 +12,7 @@ on selecting the image, you can choose one of these dimensions and specify an al
 Install Image Manager
 
 ```php
-  composer require amir94rp/laravel-file-manager
+composer require amir94rp/laravel-file-manager
 ```
 
 publich config file
@@ -24,7 +24,7 @@ php artisan vendor:publish --tag=laravel-file-manager
 Link you storage
 
 ```php
-  php artisan storage:link
+php artisan storage:link
 ```
 
 
@@ -61,7 +61,7 @@ Link you storage
       methods:{
         log:function (value){
           console.log(value);
-      }
+      },
     }
 </script>
 ```
@@ -97,8 +97,7 @@ Link you storage
 
 ## Demo
 
-[click here to see the demo](https://image-manager.amir94rp.me/)
-
+[Click here to see the demo](https://image-manager.amir94rp.me/)
 
 ## License
 
