@@ -1,112 +1,106 @@
-## About Laravel File Manager
 
-This package developed for Vue.js 3 and has the basic requirements of a file manager ( image uploader ).
+# Laravel, Inertia Vue 3  Image Manager
 
-### Install
+This package is a simple image manager that allows you to upload your images, specify the name and format of the uploading files, create and delete folder.
+
+In addition to storing the original image, this package stores 3 images in dimensions of 50%, 25% and 10% of the uploaded image.
+on selecting the image, you can choose one of these dimensions and specify an alt text.
+
+
+## Installation
+
+Install Image Manager
 
 ```php
-composer require amir94rp/laravel-file-manager
+  composer require amir94rp/laravel-file-manager
 ```
 
-and now you may publish config file by running the following command
+publich config file
 
 ```php
 php artisan vendor:publish --tag=laravel-file-manager
 ```
 
-add @routes to head of your root template.
+Link you storage
 
-```blade
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    ...
-    @routes
-  </head>
-  <body>
-    ...
-  </body>
-</html>
+```php
+  php artisan storage:link
 ```
 
-#### vue 3 components
 
-you can use both file-input and file-manager components. install them first.
-
-```javascript 
-npm i @amir94rp/vue3-file-input --save-dev
-npm i @amir94rp/vue3-file-manager --save-dev
-```
-
-##### [FileInput](https://www.npmjs.com/package/@amir94rp/vue3-file-input)
+## Usage/Examples
 
 ```vue
 <template>
-    <FileInput 
-        :images="images" 
-        v-on:update:images="images = $event" 
-        :sm-cols="1" 
-        :md-cols="4" 
-        :multiple="false"
-    />
+    <ImageManager v-model:open="open" 
+                  @output="log"
+                  :alt="alt" 
+                  :quality="quality" 
+                  :multiple="multiple" 
+                  :select="select"/>
 </template>
+
 <script>
-    import FileInput from "@amir94rp/vue3-file-input";
+    import ImageManager from "@amir94rp/vue3-file-manager";
+
     export default {
-        components: {
-            FileInput
-        },
-        data(){
-            return{
-                images:[]
-            }
+      data(){
+        return{
+          open:false,
+          multiple:false,
+          select:false,
+          quality:'xl',
+          alt:false,
         }
+      },
+
+      components:{
+        ImageManager
+      },
+
+      methods:{
+        log:function (value){
+          console.log(value);
+      }
     }
 </script>
 ```
 
-|                  |Type                           |Description                            |
-|------------------|-------------------------------|---------------------------------------|
-|images            |Array                          |array of images url                    |
-|multiple          |Boolean                        |allow multiple image selection         |
-|sm-cols & md-cols |Integer (1-12)                 |it defines the maximum columns allowed |
 
-##### [FileManager](https://www.npmjs.com/package/@amir94rp/vue3-file-manager)
+## Available Props
 
-```vue
-<template>
-    <FileManager 
-        :open-file-manager="open" 
-        :multiple="false"
-        v-on:update:openFileManager="open = $event" 
-        v-on:update:selectedImages="images = $event"
-    />
-</template>
-<script>
-    import FileManager from "@amir94rp/vue3-file-manager";
-    export default {
-        data(){
-            return{
-                open : false,
-                images : []
-            }
-        },
-        components:{
-            FileManager
-        }
-    }
-</script>
-```
 
-|                      |Type                           |Description                            |
-|----------------------|-------------------------------|---------------------------------------|
-|open-file-manager     |Boolean                        |show file manager modal                |
-|multiple              |Boolean                        |allow multiple image selection         |
-|update:selectedImages |Array                          |it will return array of selected images|
-|update:openFileManager|Boolean                        |it will return modal status            |
+| Prop | Default     | Description                |
+| :-------- | :------- | :------------------------- |
+| `open` | `false` | **Required**. open and close the ImageManager |
+| `multiple` | `false` | active multiple image selecting |
+| `select` | `false` | active image size selecting |
+| `alt` | `false` | active image alt writing |
+| `quality` | `sm` | ImageManager preview quality. possible values : 'xl' , 'lg' , 'md' , 'sm' |
+
+
+
+
+
+
+## Events
+
+
+| Event |   Type   | Description                |
+| :-------- | :------- | :------------------------- |
+| `output` | `String , Array , Object` | ImageMnager selected images output |
+
+
+
+
+
+
+## Demo
+
+[click here to see the demo](https://image-manager.amir94rp.me/)
+
 
 ## License
 
-The Laravel package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT](https://choosealicense.com/licenses/mit/)
+
