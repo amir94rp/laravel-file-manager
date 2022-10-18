@@ -15,7 +15,7 @@ Install Image Manager
 composer require amir94rp/laravel-file-manager
 ```
 
-publich config file
+publish config file
 
 ```php
 php artisan vendor:publish --tag=laravel-file-manager
