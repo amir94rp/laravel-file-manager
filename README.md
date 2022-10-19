@@ -9,59 +9,96 @@ on selecting the image, you can choose one of these dimensions and specify an al
 
 ## Installation
 
-Install Image Manager
+Install ImageManager Laravel package
 
 ```php
 composer require amir94rp/laravel-file-manager
 ```
 
-publish config file
+Publish config file
 
 ```php
 php artisan vendor:publish --tag=laravel-file-manager
 ```
 
-Link you storage
+Link your storage
 
 ```php
 php artisan storage:link
 ```
 
+Install ImageManager Vue3 component
+
+```npm
+npm i @amir94rp/vue3-file-manager --save-dev
+```
+
+If you are using Tailwind V.2, add the module path to the Tailwind settings file (tailwind.config.js).
+In this module, we use aspect ratio and forms plugins, and you should add these to the plugins array.
+
+```js
+module.exports = [
+    //...
+    purge: {
+    //...
+    content: [
+        './node_modules/@amir94rp/vue3-file-manager/dist/components/*.js',
+    ],
+    //...
+    //...
+},
+
+corePlugins: {
+    aspectRatio: false,
+},
+
+plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio')
+],
+]
+```
+
+If you are not interested in the above method or do not use Tailwind V.2, you can import the style file.
+
+```js
+import '@amir94rp/vue3-file-manager/dist/components/style.css';
+```
 
 ## Usage/Examples
 
 ```vue
 <template>
-    <ImageManager v-model:open="open" 
+    <ImageManager v-model:open="open"
                   @output="log"
-                  :alt="alt" 
-                  :quality="quality" 
-                  :multiple="multiple" 
+                  :alt="alt"
+                  :quality="quality"
+                  :multiple="multiple"
                   :select="select"/>
 </template>
 
 <script>
-    import ImageManager from "@amir94rp/vue3-file-manager";
+import ImageManager from "@amir94rp/vue3-file-manager";
 
-    export default {
-      data(){
+export default {
+    data(){
         return{
-          open:false,
-          multiple:false,
-          select:false,
-          quality:'xl',
-          alt:false,
+            open:false,
+            multiple:false,
+            select:false,
+            quality:'xl',
+            alt:false,
         }
-      },
+    },
 
-      components:{
+    components:{
         ImageManager
-      },
+    },
 
-      methods:{
+    methods:{
         log:function (value){
-          console.log(value);
-      },
+            console.log(value);
+        },
     }
 </script>
 ```
