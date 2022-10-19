@@ -40,22 +40,22 @@ In this module, we use aspect ratio and forms plugins, and you should add these 
 module.exports = [
     //...
     purge: {
+        //...
+        content: [
+            './node_modules/@amir94rp/vue3-file-manager/dist/components/*.js',
+        ],
+        //...
     //...
-    content: [
-        './node_modules/@amir94rp/vue3-file-manager/dist/components/*.js',
+    },
+
+    corePlugins: {
+        aspectRatio: false,
+    },
+
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/aspect-ratio')
     ],
-    //...
-    //...
-},
-
-corePlugins: {
-    aspectRatio: false,
-},
-
-plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio')
-],
 ]
 ```
 
@@ -69,36 +69,36 @@ import '@amir94rp/vue3-file-manager/dist/components/style.css';
 
 ```vue
 <template>
-    <ImageManager v-model:open="open"
+    <ImageManager v-model:open="open" 
                   @output="log"
-                  :alt="alt"
-                  :quality="quality"
-                  :multiple="multiple"
+                  :alt="alt" 
+                  :quality="quality" 
+                  :multiple="multiple" 
                   :select="select"/>
 </template>
 
 <script>
-import ImageManager from "@amir94rp/vue3-file-manager";
+    import ImageManager from "@amir94rp/vue3-file-manager";
 
-export default {
-    data(){
+    export default {
+      data(){
         return{
-            open:false,
-            multiple:false,
-            select:false,
-            quality:'xl',
-            alt:false,
+          open:false,
+          multiple:false,
+          select:false,
+          quality:'xl',
+          alt:false,
         }
-    },
+      },
 
-    components:{
+      components:{
         ImageManager
-    },
+      },
 
-    methods:{
+      methods:{
         log:function (value){
-            console.log(value);
-        },
+          console.log(value);
+      },
     }
 </script>
 ```
